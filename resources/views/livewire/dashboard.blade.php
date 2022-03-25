@@ -135,7 +135,7 @@
         </div>
       </div>
       <div class="row mt-4">
-        <div class="col-lg-5 mb-lg-0 mb-4">
+        <div class="col-lg-8 mb-lg-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
@@ -251,7 +251,23 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-7">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-header pb-0">
+              <h6>Sales overview</h6>
+              <p class="text-sm">
+                <i class="fa fa-arrow-up text-success"></i>
+                <span class="font-weight-bold">4% more</span> in 2021
+              </p>
+            </div>
+            <div class="card-body p-3">
+              <div class="chart">
+                <canvas id="chart-doughnut" class="chart-canvas" height="300px"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 mt-3">
           <div class="card">
             <div class="card-header pb-0">
               <h6>Sales overview</h6>
@@ -694,6 +710,90 @@
 
     new Chart(ctx2, {
       type: "line",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+            label: "Mobile apps",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: "#fbcf33",
+            borderWidth: 3,
+            backgroundColor: gradientStroke1,
+            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+            maxBarThickness: 6
+
+          },
+          {
+            label: "Websites",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: "#f53939",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+            maxBarThickness: 6
+
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false,
+        },
+        tooltips: {
+          enabled: true,
+          mode: "index",
+          intersect: false,
+        },
+        scales: {
+          yAxes: [{
+            gridLines: {
+              borderDash: [2],
+              borderDashOffset: [2],
+              color: '#dee2e6',
+              zeroLineColor: '#dee2e6',
+              zeroLineWidth: 1,
+              zeroLineBorderDash: [2],
+              drawBorder: false,
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
+              padding: 10,
+              fontSize: 11,
+              fontColor: '#adb5bd',
+              lineHeight: 3,
+              fontStyle: 'normal',
+              fontFamily: "Open Sans",
+            },
+          }, ],
+          xAxes: [{
+            gridLines: {
+              zeroLineColor: 'rgba(0,0,0,0)',
+              display: false,
+            },
+            ticks: {
+              padding: 10,
+              fontSize: 11,
+              fontColor: '#adb5bd',
+              lineHeight: 3,
+              fontStyle: 'normal',
+              fontFamily: "Open Sans",
+            },
+          }, ],
+        },
+      },
+    });
+
+    var ctx3 = document.getElementById("chart-doughnut").getContext("2d");
+
+    new Chart(ctx3, {
+      type: "doughnut",
       data: {
         labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [{
